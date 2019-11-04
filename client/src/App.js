@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchProjects } from './ducks/projects'
+import { fetchProjects, deleteProject } from './ducks/projects'
 
 import './App.css';
 import ProjectList from './components/ProjectList/ProjectList'
 
-import { PostProject, DeleteProject } from './services/fetchApi'
+import { PostProject } from './services/fetchApi'
 
 class App extends React.Component {
   constructor(){
@@ -13,7 +13,7 @@ class App extends React.Component {
 
     this.state = {
       projects: [],
-      projectname: '', 
+      projectname: '',
       description: '',
     }
 
@@ -51,14 +51,7 @@ class App extends React.Component {
 
   handleDeleteProject(event){
     const id = event.target.id
-    DeleteProject(id)
-    .then((response) => {
-      const newState = this.state.projects.filter(project => project._id !== response._id)
-      this.setState({
-        ...this.state,
-        projects: newState
-      })
-    })
+    deleteProject(id)
   }
 
   render() {
@@ -91,4 +84,4 @@ const mapStateToProps = state => ({
   ...state
 });
 
-export default connect(mapStateToProps, { fetchProjects })(App);
+export default connect(mapStateToProps, { fetchProjects, deleteProject })(App);

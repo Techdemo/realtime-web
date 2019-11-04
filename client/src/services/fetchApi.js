@@ -25,13 +25,13 @@ export const PostProject = (projectname, description) => new Promise((resolve, r
     })
 })
 
-export const DeleteProject = (id) => new Promise((resolve, reject) => {
-    console.log("ID", id)
-    Axios.delete(`http://localhost:9000/projects/deleteProject/${id}`)
-    .then((response) => {
-        resolve(response.data)
-    })
-    .catch((error) => {
-        reject(error)
-    })
-})
+// export const DeleteProject = (id) => new Promise((resolve, reject) => {
+//     console.log("ID", id)
+//     Axios.delete(`http://localhost:9000/projects/deleteProject/${id}`)
+//     .then((response) => {
+//         resolve(response.data)
+//     })
+//     .catch((error) => {
+//         reject(error)
+//     })
+// })

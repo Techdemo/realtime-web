@@ -16,9 +16,8 @@ const ProjectList = (props) => {
     ))
 }
 
-
 const mapStateToProps = state => ({
     ...state
 });
-  
+
 export default connect(mapStateToProps, { fetchProjects })(ProjectList);

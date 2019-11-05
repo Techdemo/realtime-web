@@ -1,23 +1,27 @@
 import React from 'react';
 import ProjectThumbnail from './ProjectThumbnail/ProjectThumbnail'
 import { connect } from 'react-redux';
-import { fetchProjects } from '../../ducks/projects'
+import { deleteProject } from '../../ducks/projects';
 
-const ProjectList = (props) => {
-    console.log("PROPS IN PROJECTLIST", props)
-    return props.projects.projects.map(project => (
+const ProjectList = ({projects, deleteProject}) => {
+
+    const handleDeleteProject = (event) => {
+        deleteProject(event.target.id)
+      }
+
+    return projects.map(project => (
         <ProjectThumbnail
             key={project._id}
             projectname={project.projectname}
             description={project.description}
             id={project._id}
-            deleteTaskHandler={props.deleteTask}
+            deleteTaskHandler={handleDeleteProject}
         />
     ))
 }
 
 const mapStateToProps = state => ({
-    ...state
+    projects: state.projects.projects
 });
 
-export default connect(mapStateToProps, { fetchProjects })(ProjectList);
+export default connect(mapStateToProps, { deleteProject })(ProjectList);
